@@ -1,60 +1,114 @@
-# Arquivo da Máscara
+# Arquivo da Máscara — Criador de Fichas V5
 
-Projeto React + Node/Express + MongoDB Atlas para criação de fichas.
+Projeto React + Node/Express + MongoDB Atlas para recriar a navegação de consulta e permitir que usuários criem, editem, visualizem e excluam várias fichas.
+
+## Estrutura
+
+```txt
+frontend/  React + Vite
+backend/   Node.js + Express + MongoDB
+```
 
 ## Rodar localmente
 
-### Backend
+### 1. Backend
 
 ```bash
 cd backend
 npm install
+copy .env.example .env
 npm run dev
 ```
 
-Crie `backend/.env` com base em `backend/.env.example`.
+No `.env`, preencha:
 
-### Frontend
+```env
+PORT=5000
+MONGODB_URI=sua_string_do_mongo_atlas
+JWT_SECRET=um_segredo_grande
+FRONTEND_URL=http://localhost:5173
+```
+
+### 2. Frontend
 
 ```bash
 cd frontend
 npm install
+copy .env.example .env
 npm run dev
 ```
 
-Crie `frontend/.env` com:
+No `.env` do frontend:
 
 ```env
 VITE_API_URL=http://localhost:5000/api
 ```
 
-## Recuperação de senha com Gmail SMTP
+Acesse: `http://localhost:5173`
 
-No backend, configure:
+## Render
 
-```env
-FRONTEND_URL=http://localhost:5173
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_SECURE=false
-EMAIL_USER=seuemail@gmail.com
-EMAIL_PASS=sua_senha_de_app_do_google
-EMAIL_FROM=Arquivo da Máscara <seuemail@gmail.com>
+### Backend como Web Service
+
+- Root Directory: `backend`
+- Build Command: `npm install`
+- Start Command: `npm start`
+- Environment Variables:
+  - `PORT`
+  - `MONGODB_URI`
+  - `JWT_SECRET`
+  - `FRONTEND_URL` com a URL final do frontend
+
+### Frontend como Static Site
+
+- Root Directory: `frontend`
+- Build Command: `npm install && npm run build`
+- Publish Directory: `dist`
+- Environment Variable:
+  - `VITE_API_URL=https://URL-DO-BACKEND.onrender.com/api`
+
+## Onde adicionar os textos
+
+As páginas de consulta usam `frontend/src/pages/ReferencePage.jsx` e os dados base ficam em `frontend/src/data/reference.js`.
+
+Para criar páginas com textos longos separados, você pode adicionar arquivos em:
+
+```txt
+frontend/src/data/pages/
 ```
 
-Use uma **senha de app** do Google, não a senha normal da sua conta.
+E depois importar no `ReferencePage.jsx`.
 
-Caminho no Google:
+## Funcionalidades prontas
 
-1. Ative a verificação em duas etapas da conta Google.
-2. Acesse Segurança > Senhas de app.
-3. Gere uma senha de app para o projeto.
-4. Cole essa senha em `EMAIL_PASS`.
+- Cadastro
+- Login com JWT
+- Proteção de rotas
+- Dashboard do usuário
+- Criar várias fichas
+- Editar ficha
+- Visualizar ficha
+- Excluir ficha
+- Páginas de consulta com placeholders
+- Layout escuro inspirado no estilo gótico do material antigo
 
-## Funcionalidades de e-mail incluídas
+## Próximas melhorias possíveis
 
-- E-mail de boas-vindas ao criar conta.
-- Link de recuperação de senha.
-- Aviso de senha alterada.
+- Exportar ficha em PDF
+- Imprimir ficha
+- Upload de avatar/imagem do personagem
+- Admin para editar textos das páginas pelo navegador
+- Busca nas páginas de consulta
+- Campos dinâmicos para disciplinas, vantagens, defeitos e convicções
 
-O link de recuperação expira em 1 hora.
+## Restauração adicionada nesta versão
+
+Foram adicionados ao frontend:
+
+- rota `/arquivo` com a página inicial restaurada e menu de navegação rápida do antigo site;
+- rota `/consulta/camarilla` exibindo a página HTML organizada da Camarilla;
+- arquivo `frontend/public/restaurado/camarilla.html`;
+- PDF recuperado em `frontend/public/docs/papo-de-nerd-vampiro-a-mascara-5e.pdf`;
+- navegação nova no topo para `Camarilla` e `Arquivo`.
+
+O ZIP limpo foi gerado sem `node_modules` e sem arquivos `.env`. Rode `npm install` no backend e no frontend antes de iniciar.

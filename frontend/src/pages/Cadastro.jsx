@@ -1,5 +1,0 @@
-import React from 'react';
-import { useState } from 'react';import { useNavigate } from 'react-router-dom';import { api } from '../services/api.js';
-export default function Cadastro({ setUser }) { const [form,setForm]=useState({name:'',email:'',password:''}); const [msg,setMsg]=useState(''); const nav=useNavigate();
-async function submit(e){e.preventDefault();try{const {data}=await api.post('/auth/register',form);localStorage.setItem('token',data.token);localStorage.setItem('user',JSON.stringify(data.user));setUser(data.user);nav('/dashboard')}catch(err){setMsg(err.response?.data?.message||'Erro ao cadastrar.')}}
-return <form className="card form" onSubmit={submit}><h1>Criar conta</h1>{msg&&<p className="error">{msg}</p>}<input placeholder="Nome" value={form.name} onChange={e=>setForm({...form,name:e.target.value})}/><input placeholder="E-mail" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/><input type="password" placeholder="Senha" value={form.password} onChange={e=>setForm({...form,password:e.target.value})}/><button className="primary">Cadastrar</button></form>}
