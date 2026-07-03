@@ -67,18 +67,6 @@ Acesse: `http://localhost:5173`
 - Environment Variable:
   - `VITE_API_URL=https://URL-DO-BACKEND.onrender.com/api`
 
-## Onde adicionar os textos
-
-As páginas de consulta usam `frontend/src/pages/ReferencePage.jsx` e os dados base ficam em `frontend/src/data/reference.js`.
-
-Para criar páginas com textos longos separados, você pode adicionar arquivos em:
-
-```txt
-frontend/src/data/pages/
-```
-
-E depois importar no `ReferencePage.jsx`.
-
 ## Funcionalidades prontas
 
 - Cadastro
@@ -91,24 +79,3 @@ E depois importar no `ReferencePage.jsx`.
 - Excluir ficha
 - Páginas de consulta com placeholders
 - Layout escuro inspirado no estilo gótico do material antigo
-
-## Próximas melhorias possíveis
-
-- Exportar ficha em PDF
-- Imprimir ficha
-- Upload de avatar/imagem do personagem
-- Admin para editar textos das páginas pelo navegador
-- Busca nas páginas de consulta
-- Campos dinâmicos para disciplinas, vantagens, defeitos e convicções
-
-## Restauração adicionada nesta versão
-
-Foram adicionados ao frontend:
-
-- rota `/arquivo` com a página inicial restaurada e menu de navegação rápida do antigo site;
-- rota `/consulta/camarilla` exibindo a página HTML organizada da Camarilla;
-- arquivo `frontend/public/restaurado/camarilla.html`;
-- PDF recuperado em `frontend/public/docs/papo-de-nerd-vampiro-a-mascara-5e.pdf`;
-- navegação nova no topo para `Camarilla` e `Arquivo`.
-
-O ZIP limpo foi gerado sem `node_modules` e sem arquivos `.env`. Rode `npm install` no backend e no frontend antes de iniciar.
